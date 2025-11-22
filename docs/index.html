@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zawsze Rób Swoje — Start 01.01.2026</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="center">
+    <div class="card">
+      <h1>Strona w pracach technicznych</h1>
+      <p class="lead">Sklep jest obecnie w trakcie prac technicznych.</p>
+
+      <div class="countdown" aria-live="polite">
+        <div class="count-item"><span id="days">--</span><small>dni</small></div>
+        <div class="count-item"><span id="hours">--</span><small>godz.</small></div>
+        <div class="count-item"><span id="minutes">--</span><small>min.</small></div>
+        <div class="count-item"><span id="seconds">--</span><small>sek.</small></div>
+      </div>
+
+      <p class="start">Planowany start: <strong>01.01.2026</strong></p>
+      <p class="info">Zapisz się, aby otrzymać powiadomienie (formularz front‑end, bez zapisu):</p>
+
+      <form id="mailForm" class="mail-form" onsubmit="event.preventDefault(); alert('Dziękujemy! Formularz jest tylko demo.');">
+        <input id="email" type="email" placeholder="Twój e‑mail" aria-label="Twój e‑mail" required>
+        <button type="submit">Powiadom mnie</button>
+      </form>
+
+      <p class="contact">Kontakt: <a href="mailto:kontakt@zawsze-robswoje.example">kontakt@zawsze-robswoje.example</a></p>
+      <small class="meta">Repozytorium: <a href="https://github.com/czlowiekkludzki-creator/Zawsze-R-b-Swoje-" target="_blank" rel="noopener">github.com/czlowiekkludzki-creator/Zawsze-R-b-Swoje-</a></small>
+    </div>
+  </main>
+
+  <script>
+    const target = new Date(2026, 0, 1, 0, 0, 0);
+    function updateCountdown() {
+      const now = new Date();
+      let diff = target - now;
+      if (diff < 0) diff = 0;
+      const sec = Math.floor((diff / 1000) % 60);
+      const min = Math.floor((diff / (1000 * 60)) % 60);
+      const hr = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hr).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(min).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(sec).padStart(2, '0');
+      if (diff === 0) {
+        document.querySelector('.countdown').innerHTML = '<div class="launched">Wystartowaliśmy! Sprawdź sklep.</div>';
+      }
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
